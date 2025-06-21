@@ -8,7 +8,7 @@ export default function App() {
   useEffect(() => {
     const fetchDrivers = async () => {
       try {
-        const res = await axios.get('/drivers/pending-details');
+        const res = await axios.get('https://quickflex-admin-backend-production.up.railway.app/drivers/pending-details');
         setDrivers(res.data);
       } catch (err) {
         console.error(err);
@@ -22,7 +22,10 @@ export default function App() {
 
   const handleDecision = async (driver_id, decision) => {
     try {
-      await axios.post('/drivers/update-status', { driver_id, status: decision });
+      await axios.post('https://quickflex-admin-backend-production.up.railway.app/drivers/update-status', {
+        driver_id,
+        status: decision
+      });
       setDrivers(prev => prev.filter(d => d.driver_id !== driver_id));
     } catch (err) {
       console.error(err);
@@ -45,7 +48,7 @@ export default function App() {
           <h3 className="font-bold">Background Check</h3>
           <p><strong>Status:</strong> {d.check_status} (Date: {d.check_date})</p>
           <p><strong>Verified By:</strong> {d.verified_by}</p>
-          <p><strong>Notes:</strong> {d.check_notes}</p>
+          <p><strong>Notes:</strong> {d.background_notes}</p>
           <hr className="my-2" />
           <h3 className="font-bold">Car</h3>
           <p>{d.year} {d.make} {d.model} ({d.color})</p>
