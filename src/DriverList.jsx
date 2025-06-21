@@ -69,7 +69,7 @@ export default function DriverList() {
                 <td style={tdStyle}>{driver.status}</td>
                 <td style={tdStyle}>
                   <button
-                    onClick={() => navigate(`/review/${driver.driver_id}`)}
+                    onClick={() => navigate(`/profile/${driver.driver_id}`)}
                     style={btnStyle}
                   >
                     {driver.status === 'New Registered' ? 'Review' : 'Driver Profile'}
